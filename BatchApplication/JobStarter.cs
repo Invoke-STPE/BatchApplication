@@ -34,12 +34,19 @@ namespace BatchApplication
 
         public static void StartJob(string jobId, IHost host)
         {
-            var jobExists = _jobs.TryGetValue(jobId, out Type jobType);
+            var jobExists = _jobs.TryGetValue(jobId, out Type? jobType);
 
             if (jobExists == false) { throw new ArgumentException($"Invalid job id: {jobId}"); }
-
-            var job = (IBatchJob)host.Services.GetRequiredService(jobType);
-            job.Start();
+            
+            var service = host.Services.GetRequiredService(jobType!) as IBatchJob;
+            if (service is IBatchJob job)
+            {
+                job.Start();
+            }
+            else
+            {
+                throw new InvalidOperationException($"Service of type {jobType} does not implement IBatchJob");
+            }
         }
     }
 }

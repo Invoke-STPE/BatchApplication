@@ -3,6 +3,7 @@ using BatchApplication.Domain;
 using BatchApplication.Domain.BatchJobInterfaces;
 
 namespace _027_BookingDateBatchJob.Domain.BatchJobInterfaces;
+[BatchJob]
 public class BookingDateBatchJob : BaseBatchJob, IBookingDateBatchJob
 {
     public BookingDateBatchJob()

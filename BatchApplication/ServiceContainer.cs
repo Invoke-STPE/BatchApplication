@@ -1,4 +1,6 @@
-﻿using BatchApplication.Infrastructure;
+﻿using System.Reflection;
+using BatchApplication.Domain.BatchJobInterfaces;
+using BatchApplication.Infrastructure;
 using Microsoft.Extensions.Hosting;
 
 namespace BatchApplication

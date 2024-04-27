@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_003_AccountOpportunityDail
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatchApplication.Infrastructure", "BatchApplication.Infrastructure\BatchApplication.Infrastructure.csproj", "{7F38FC83-1930-4E83-ABAD-0FA1C04441B6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BatchJobs", "BatchJobs", "{56FDF4EE-035C-46A2-9A96-94DBD96EC86B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

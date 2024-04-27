@@ -20,6 +20,5 @@ try
 }
 catch (Exception)
 {
-
 	throw;
 }
