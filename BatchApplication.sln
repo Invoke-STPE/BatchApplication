@@ -5,16 +5,6 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BatchApplication", "BatchApplication\BatchApplication.csproj", "{EBC98160-37B3-4691-9262-3D77378399B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_027_BookingDateBatchJob", "BookingDateBatchJob\_027_BookingDateBatchJob.csproj", "{FB44921A-6F8A-4293-8346-97247A3D2A80}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatchApplication.Domain", "BatchApplication.Domain\BatchApplication.Domain.csproj", "{7206C6C9-9A78-442B-8C63-F725DDCB5DDE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_003_AccountOpportunityDailyDataHandlingBatchJob", "AccountOpportunityDailyDataHandlingBatchJob\_003_AccountOpportunityDailyDataHandlingBatchJob.csproj", "{03761354-3C8D-4D08-93FB-1A032342F2E2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatchApplication.Infrastructure", "BatchApplication.Infrastructure\BatchApplication.Infrastructure.csproj", "{7F38FC83-1930-4E83-ABAD-0FA1C04441B6}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BatchJobs", "BatchJobs", "{56FDF4EE-035C-46A2-9A96-94DBD96EC86B}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,22 +15,6 @@ Global
 		{EBC98160-37B3-4691-9262-3D77378399B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBC98160-37B3-4691-9262-3D77378399B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBC98160-37B3-4691-9262-3D77378399B3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FB44921A-6F8A-4293-8346-97247A3D2A80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FB44921A-6F8A-4293-8346-97247A3D2A80}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FB44921A-6F8A-4293-8346-97247A3D2A80}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FB44921A-6F8A-4293-8346-97247A3D2A80}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7206C6C9-9A78-442B-8C63-F725DDCB5DDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7206C6C9-9A78-442B-8C63-F725DDCB5DDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7206C6C9-9A78-442B-8C63-F725DDCB5DDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7206C6C9-9A78-442B-8C63-F725DDCB5DDE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{03761354-3C8D-4D08-93FB-1A032342F2E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{03761354-3C8D-4D08-93FB-1A032342F2E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{03761354-3C8D-4D08-93FB-1A032342F2E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{03761354-3C8D-4D08-93FB-1A032342F2E2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7F38FC83-1930-4E83-ABAD-0FA1C04441B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7F38FC83-1930-4E83-ABAD-0FA1C04441B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7F38FC83-1930-4E83-ABAD-0FA1C04441B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7F38FC83-1930-4E83-ABAD-0FA1C04441B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

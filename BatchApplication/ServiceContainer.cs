@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using BatchApplication.Domain;
 using BatchApplication.Domain.BatchJobInterfaces;
 using BatchApplication.Infrastructure;
 using Microsoft.Extensions.Hosting;
@@ -9,6 +10,8 @@ namespace BatchApplication
     {
         public static IHost ConfigureBatchJobServices()
         {
+            
+
             var host = Host.CreateDefaultBuilder()
             .ConfigureServices((context, services) =>
             {

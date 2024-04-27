@@ -1,5 +1,6 @@
 ﻿
 using BatchApplication;
+using BatchApplication.Domain;
 
 var batchJobId = args[0];
 
@@ -11,6 +12,8 @@ if (batchJobId == null || string.IsNullOrWhiteSpace(batchJobId))
     Console.WriteLine("Invalid job id provided");
     Environment.Exit(jobFailed);
 }
+
+
 
 try
 {
