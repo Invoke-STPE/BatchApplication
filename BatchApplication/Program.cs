@@ -1,6 +1,6 @@
 ﻿
 using BatchApplication;
-using BatchApplication.Domain;
+using OpportunityDailyDataHandler;
 
 var batchJobId = args[0];
 
@@ -11,13 +11,13 @@ if (batchJobId == null || string.IsNullOrWhiteSpace(batchJobId))
 {
     Console.WriteLine("Invalid job id provided");
     Environment.Exit(jobFailed);
+    var test = new BatchJob();
 }
-
-
 
 try
 {
     var host = ServiceContainer.ConfigureBatchJobServices();
+
     JobStarter.StartJob(batchJobId, host);
     Console.ReadLine();
 }

@@ -1,4 +1,5 @@
-﻿using BatchApplication.Domain.BatchJobInterfaces;
+﻿using JobJuggler;
+using JobJuggler.Attributes;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -13,21 +14,17 @@ namespace BatchApplication
         /// </summary>
         static JobStarter()
         {
-            var batchJobType = typeof(IBatchJob);
+            var batchJobAttribute = typeof(BatchJobAttribute);
             var batchJobTypes = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(a => a.GetTypes())
-                .Where(t => batchJobType.IsAssignableFrom(t) && !t.IsInterface && !t.IsAbstract)
+                .Where(t => t.IsDefined(batchJobAttribute, false) && !t.IsInterface)
                 .ToList();
 
             foreach (var type in batchJobTypes)
             {
-                var interfaces = type.GetInterfaces().Where(i => i != typeof(IBatchJob));
-                foreach (var @interface in interfaces)
+                if (Activator.CreateInstance(type) is BatchJobAttribute batchJob)
                 {
-                    if (Activator.CreateInstance(type) is IBatchJob job)
-                    {
-                        _jobs.Add(job.BatchId, @interface);
-                    }
+                    _jobs.Add(batchJob.BatchId, type);
                 }
             }
         }
@@ -41,7 +38,7 @@ namespace BatchApplication
             var service = host.Services.GetRequiredService(jobType!) as IBatchJob;
             if (service is IBatchJob job)
             {
-                job.Start();
+                job.Execute();
             }
             else
             {
