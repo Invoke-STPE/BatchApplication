@@ -1,7 +1,7 @@
 ﻿using BatchApplication.Core;
 namespace OpportunityDailyDataHandler;
 
-public class BatchJob : IBatchJob
+public class BatchJobHandler : IBatchJob
 {
     public string BatchId { get; set; } = "027";
 
