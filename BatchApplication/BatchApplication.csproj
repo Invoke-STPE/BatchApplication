@@ -14,7 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\JobJuggler\JobJuggler.csproj" />
-    <ProjectReference Include="..\BatchJobs\OpportunityDailyDataHandler\OpportunityDailyDataHandler.csproj" />
+    <ProjectReference Include="..\BatchApplication.Core\BatchApplication.Core.csproj" />
   </ItemGroup>
 </Project>

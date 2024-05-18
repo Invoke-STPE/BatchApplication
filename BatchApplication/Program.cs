@@ -1,6 +1,5 @@
 ﻿
 using BatchApplication;
-using OpportunityDailyDataHandler;
 
 var batchJobId = args[0];
 
@@ -11,7 +10,6 @@ if (batchJobId == null || string.IsNullOrWhiteSpace(batchJobId))
 {
     Console.WriteLine("Invalid job id provided");
     Environment.Exit(jobFailed);
-    var test = new BatchJob();
 }
 
 try

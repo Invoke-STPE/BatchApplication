@@ -1,9 +1,12 @@
-﻿using JobJuggler.Attributes;
-
+﻿using BatchApplication.Core;
 namespace OpportunityDailyDataHandler;
 
-[BatchJob(batchId: "027")]
-public class BatchJob
+public class BatchJob : IBatchJob
 {
+    public string BatchId { get; set; } = "027";
 
+    public void Execute()
+    {
+        throw new NotImplementedException();
+    }
 }

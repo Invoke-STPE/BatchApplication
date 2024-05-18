@@ -1,5 +1,4 @@
-﻿using JobJuggler;
-using JobJuggler.Attributes;
+﻿using BatchApplication.Core;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -9,20 +8,13 @@ namespace BatchApplication
     {
         private static readonly Dictionary<string, Type> _jobs = [];
 
-        /// <summary>
-        /// Populates the _jobs dictionary with batch job IDs and their corresponding interface types.
-        /// </summary>
         static JobStarter()
         {
-            var batchJobAttribute = typeof(BatchJobAttribute);
-            var batchJobTypes = AppDomain.CurrentDomain.GetAssemblies()
-                .SelectMany(a => a.GetTypes())
-                .Where(t => t.IsDefined(batchJobAttribute, false) && !t.IsInterface)
-                .ToList();
+            Type[] batchJobsTypes = BatchJobAssemblyManager.GetBatchJobTypes();
 
-            foreach (var type in batchJobTypes)
+            foreach (var type in batchJobsTypes)
             {
-                if (Activator.CreateInstance(type) is BatchJobAttribute batchJob)
+                if (Activator.CreateInstance(type) is IBatchJob batchJob)
                 {
                     _jobs.Add(batchJob.BatchId, type);
                 }

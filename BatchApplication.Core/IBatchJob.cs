@@ -1,4 +1,4 @@
-﻿namespace JobJuggler;
+﻿namespace BatchApplication.Core;
 
 public interface IBatchJob
 {

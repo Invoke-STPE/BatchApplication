@@ -1,5 +1,4 @@
-﻿using JobJuggler;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
 
 namespace BatchApplication
 {
@@ -10,7 +9,6 @@ namespace BatchApplication
             var host = Host.CreateDefaultBuilder()
             .ConfigureServices((context, services) =>
             {
-                services.RegisterBatchJobs();
             }).Build();
 
             return host;
