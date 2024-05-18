@@ -15,11 +15,11 @@ if (batchJobId == null || string.IsNullOrWhiteSpace(batchJobId))
 try
 {
     var host = ServiceContainer.ConfigureBatchJobServices();
+
     JobStarter.StartJob(batchJobId, host);
     Console.ReadLine();
 }
 catch (Exception)
 {
-
 	throw;
 }

@@ -10,11 +10,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BatchApplication.Domain\BatchApplication.Domain.csproj" />
-    <ProjectReference Include="..\BatchApplication.Infrastructure\BatchApplication.Infrastructure.csproj" />
+    <ProjectReference Include="..\BatchApplication.Core\BatchApplication.Core.csproj" />
   </ItemGroup>
-
 </Project>

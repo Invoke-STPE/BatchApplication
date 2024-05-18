@@ -6,12 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="morelinq" Version="4.2.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\BatchApplication.Domain\BatchApplication.Domain.csproj" />
+   <ItemGroup>
+    <ProjectReference Include="..\..\BatchApplication.Core\BatchApplication.Core.csproj" />
   </ItemGroup>
 
 </Project>
