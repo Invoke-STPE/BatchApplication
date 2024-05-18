@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatchApplication.Core", "Ba
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterPolicy", "BatchJobs\MasterPolicyBatchJob\MasterPolicy.csproj", "{2ACD85E4-583B-4115-BFC9-D47491A7CC43}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{424F7449-9EB8-47DB-B907-3789726C32B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatchApplication.Tests", "Tests\BatchApplication.Tests\BatchApplication.Tests.csproj", "{1D2803AE-C997-4199-A15B-4A8354E3FDE5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +39,10 @@ Global
 		{2ACD85E4-583B-4115-BFC9-D47491A7CC43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2ACD85E4-583B-4115-BFC9-D47491A7CC43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2ACD85E4-583B-4115-BFC9-D47491A7CC43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D2803AE-C997-4199-A15B-4A8354E3FDE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D2803AE-C997-4199-A15B-4A8354E3FDE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D2803AE-C997-4199-A15B-4A8354E3FDE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D2803AE-C997-4199-A15B-4A8354E3FDE5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +50,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{6CC691D0-2827-4019-B832-25320047AED8} = {D3929599-3D5C-4E24-9A21-B8CC21D550C5}
 		{2ACD85E4-583B-4115-BFC9-D47491A7CC43} = {D3929599-3D5C-4E24-9A21-B8CC21D550C5}
+		{1D2803AE-C997-4199-A15B-4A8354E3FDE5} = {424F7449-9EB8-47DB-B907-3789726C32B3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5746C92A-7A5D-44F8-BB6D-A35B26818636}
