@@ -12,11 +12,20 @@ public class CsvReaderService : ICsvReader
       _fileSystem = fileSystem;
     }
 
+    /// <summary>
+    /// Reads all records of type <typeparamref name="T"/> from all CSV files in the specified folder and returns them as an array.
+    /// </summary>
+    /// <typeparam name="T">The type of the records to be read from the CSV files.</typeparam>
+    /// <param name="folderPath">The path to the folder containing the CSV files.</param>
+    /// <returns>An array of all records of type <typeparamref name="T"/> from the CSV files.</returns>
+    /// <remarks>
+    /// This method reads all records from the CSV files in the specified folder and returns them as a single array.
+    /// It is intended for use with smaller files where loading all records into memory at once is feasible.
+    /// If an error occurs while processing a file, the error is logged, and the method continues with the next file.
+    /// </remarks>
     public T[] ReadAll<T>(string folderPath)
     {
-        IEnumerable<string>? files = LoadFilesFromPath<T>(folderPath);
-
-        if (files.Any() == false) { return Array.Empty<T>(); }
+        IEnumerable<string> files = LoadFilesFromPath(folderPath);
 
         List<T> allRecords = [];
 
@@ -38,11 +47,21 @@ public class CsvReaderService : ICsvReader
         return [.. allRecords];
     }
 
+    /// <summary>
+    /// Reads records of type <typeparamref name="T"/> from all CSV files in the specified folder in chunks and processes each chunk.
+    /// </summary>
+    /// <typeparam name="T">The type of the records to be read from the CSV files.</typeparam>
+    /// <param name="folderPath">The path to the folder containing the CSV files.</param>
+    /// <param name="chunkSize">The number of records in each chunk to be processed.</param>
+    /// <param name="processChunk">An action to process each chunk of records.</param>
+    /// <remarks>
+    /// This method reads records from the CSV files in the specified folder in chunks of the given size.
+    /// Each chunk is processed using the provided <paramref name="processChunk"/> action.
+    /// If an error occurs while processing a file, the error is logged, and the method continues with the next file.
+    /// </remarks>
     public void ReadInChunks<T>(string folderPath, int chunkSize, Action<List<T>> processChunk)
     {
-        IEnumerable<string>? files = LoadFilesFromPath<T>(folderPath);
-
-        if (files.Any() == false) { return; }
+        IEnumerable<string> files = LoadFilesFromPath(folderPath);
 
         foreach (var file in files)
         {
@@ -75,17 +94,57 @@ public class CsvReaderService : ICsvReader
         }
     }
 
+    /// <summary>
+    /// Reads a file line by line and processes each line using the specified action.
+    /// </summary>
+    /// <param name="filePath">The path to the file to be read.</param>
+    /// <param name="processLine">An action to process each line of the file.</param>
+    /// <remarks>
+    /// This method is useful for processing very large files where the overhead of using CSV parsing might be too high,
+    /// or when pre-processing is needed before loading the data with a CSV helper.
+    /// </remarks>
     public void ReadLineByLine(string filePath, Action<string> processLine)
     {
-      throw new NotImplementedException();
+      using (var reader = new StreamReader(filePath))
+        {
+            string line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                processLine(line);
+            }
+        }
     }
 
-    public IEnumerable<T> Stream<T>(string filePath)
+    /// <summary>
+    /// Streams records of type <typeparamref name="T"/> from all CSV files in the specified folder.
+    /// </summary>
+    /// <typeparam name="T">The type of the records to be read from the CSV files.</typeparam>
+    /// <param name="folderPath">The path to the folder containing the CSV files.</param>
+    /// <returns>
+    /// An <see cref="IEnumerable{T}"/> that streams records of type <typeparamref name="T"/> from the CSV files.
+    /// </returns>
+    /// <remarks>
+    /// This method loads all file paths from the specified folder, opens each file, reads records using CsvHelper, 
+    /// and streams the records as objects of type <typeparamref name="T"/>.
+    /// </remarks>
+    public IEnumerable<T> Stream<T>(string folderPath)
     {
-      throw new NotImplementedException();
+      IEnumerable<string> files = LoadFilesFromPath(folderPath);
+
+      foreach (var file in files)
+      {
+        using (var reader = _fileSystem.OpenFile(file))
+        using (var csv = new CsvHelper.CsvReader(reader, CultureInfo.InvariantCulture))
+        {
+            foreach (var record in csv.GetRecords<T>())
+            {
+                yield return record;
+            }
+        }
+      }
     }
 
-    private IEnumerable<string> LoadFilesFromPath<T>(string folderPath)
+    private IEnumerable<string> LoadFilesFromPath(string folderPath)
     {
         var files = _fileSystem.EnumerateFiles(folderPath);
 
