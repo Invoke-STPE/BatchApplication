@@ -103,9 +103,13 @@ public class CsvReaderService : ICsvReader
     /// This method is useful for processing very large files where the overhead of using CSV parsing might be too high,
     /// or when pre-processing is needed before loading the data with a CSV helper.
     /// </remarks>
-    public void ReadLineByLine(string filePath, Action<string> processLine)
+    public void ReadLineByLine(string folderPath, Action<string> processLine)
     {
-      using (var reader = new StreamReader(filePath))
+      IEnumerable<string> files = LoadFilesFromPath(folderPath);
+
+      foreach (var file in files)
+      {
+        using (var reader = new StreamReader(file))
         {
             string line;
             while ((line = reader.ReadLine()) != null)
@@ -113,6 +117,7 @@ public class CsvReaderService : ICsvReader
                 processLine(line);
             }
         }
+      }
     }
 
     /// <summary>
