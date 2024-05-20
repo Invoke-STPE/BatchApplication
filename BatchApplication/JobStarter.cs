@@ -1,4 +1,5 @@
-﻿using BatchApplication.Core;
+﻿using System.Reflection;
+using BatchApplication.Core;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -10,7 +11,7 @@ namespace BatchApplication
 
         static JobStarter()
         {
-            Type[] batchJobsTypes = BatchJobAssemblyManager.GetBatchJobTypes();
+            Type[] batchJobsTypes = BatchJobAssemblyManager.GetLoadedBatchJobTypes();
 
             foreach (var type in batchJobsTypes)
             {

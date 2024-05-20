@@ -1,7 +1,8 @@
 ﻿
 using BatchApplication;
 
-var batchJobId = args[0];
+// var batchJobId = args[0];
+var batchJobId = "010";
 
 const int jobSuccessfull = 0;
 const int jobFailed = 1;

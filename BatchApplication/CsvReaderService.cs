@@ -3,7 +3,7 @@ using BatchApplication.Core;
 
 namespace BatchApplication;
 
-public class CsvReaderService : ICsvReader
+public class CsvReaderService : ICsvReaderService
 {
     private readonly IFileSystem _fileSystem;
 

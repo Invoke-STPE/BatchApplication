@@ -21,6 +21,14 @@ public class BatchJobAssemblyManager
       return batchJobsTypes;
     }
 
+    public static Type[] GetLoadedBatchJobTypes()
+    {
+      Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
+
+      return assemblies.SelectMany(assembly => ExtractBatchJobTypesFromAssembly(assembly)).ToArray();
+
+    }
+
     private static IEnumerable<Type> ExtractBatchJobTypesFromAssembly(Assembly assembly)
     {
       var batchJobInterface = typeof(IBatchJob);

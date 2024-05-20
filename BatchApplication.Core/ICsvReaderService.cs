@@ -1,6 +1,6 @@
 ﻿namespace BatchApplication.Core;
 
-public interface ICsvReader
+public interface ICsvReaderService
 {
   T[] ReadAll<T>(string folderPath);
   void ReadLineByLine(string filePath, Action<string> processLine);
