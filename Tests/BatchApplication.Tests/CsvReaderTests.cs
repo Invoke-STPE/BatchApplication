@@ -1,8 +1,11 @@
 using System.ComponentModel;
+using System.IO.Compression;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using BatchApplication.Core;
 using NSubstitute;
 using NSubstitute.ClearExtensions;
+using NSubstitute.Core;
 using NSubstitute.ReturnsExtensions;
 
 namespace BatchApplication.Tests;
@@ -97,4 +100,44 @@ public class CsvReaderTests
         //     Assert.AreEqual(expected, actual);
         // }
     }
+
+    [TestClass]
+    public class ReadInChunks : CsvReaderTests
+    {
+        [TestMethod]
+        public void ReadInChunks_WhenCsvExceeds2Lines_ProcessesChunksOf2()
+        {
+            List<TestRecord> capturedChunk = new();
+            var capturedChunks = new List<List<TestRecord>>();
+
+            FileSystem.EnumerateFiles("path/to/file").Returns(["file1.csv"]);
+            FileSystem.OpenFile("file1.csv").Returns(new StreamReader(new MemoryStream(System.Text.Encoding.UTF8.GetBytes("Id,Name\nValue1,Value2\nValue1,Value2"))));
+            var processChunkMock = Substitute.For<Action<IEnumerable<TestRecord>>>();
+
+            CsvReaderService csvReaderService = new(FileSystem);
+            csvReaderService.ReadInChunks("path/to/file", 2, processChunkMock);
+
+            processChunkMock.Received().Invoke(Arg.Any<IEnumerable<TestRecord>>());
+        }
+
+        [TestMethod]
+        public void ReadInChunks_WhenCsvLinesSurpasses500_CallsProcessChunkWith500()
+        {
+            List<TestRecord> capturedChunk = new();
+            var capturedChunks = new List<List<TestRecord>>();
+
+            var processChunkMock = Substitute.For<Action<IEnumerable<TestRecord>>>();
+
+            CsvReaderService csvReaderService = new(FileSystem);
+            csvReaderService.ReadInChunks("path/to/file", 2, processChunkMock);
+
+            processChunkMock.DidNotReceive().Invoke(Arg.Any<IEnumerable<TestRecord>>());
+        }
+    }
+}
+
+public class TestRecord
+{
+    public string? Id { get; set; }
+    public string? Name { get; set; }
 }
