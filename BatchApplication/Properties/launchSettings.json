@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "BatchApplication": {
-      "commandName": "Project",
-      "commandLineArgs": "027"
-    }
-  }
-}
