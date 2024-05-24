@@ -17,6 +17,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DF63C8B5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Tests", "Tests\Infrastructure.Tests\Infrastructure.Tests.csproj", "{4A47AD58-00D7-45F6-8C51-16CA3CD71432}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BatchJobs", "BatchJobs", "{14DFC8C3-9A18-4D77-9C45-3E86549825E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterPolicy", "BatchJobs\MasterPolicy\MasterPolicy.csproj", "{EC2C5313-3E3C-41B2-848A-654F57CD0520}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpportunityDailyDataHandler", "BatchJobs\OpportunityDailyDataHandler\OpportunityDailyDataHandler.csproj", "{D71AC392-106A-45BB-B59F-8BAA40E3F34D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,11 +53,21 @@ Global
 		{4A47AD58-00D7-45F6-8C51-16CA3CD71432}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A47AD58-00D7-45F6-8C51-16CA3CD71432}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A47AD58-00D7-45F6-8C51-16CA3CD71432}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC2C5313-3E3C-41B2-848A-654F57CD0520}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC2C5313-3E3C-41B2-848A-654F57CD0520}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC2C5313-3E3C-41B2-848A-654F57CD0520}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC2C5313-3E3C-41B2-848A-654F57CD0520}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D71AC392-106A-45BB-B59F-8BAA40E3F34D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D71AC392-106A-45BB-B59F-8BAA40E3F34D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D71AC392-106A-45BB-B59F-8BAA40E3F34D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D71AC392-106A-45BB-B59F-8BAA40E3F34D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4A47AD58-00D7-45F6-8C51-16CA3CD71432} = {DF63C8B5-3D4E-4335-9A24-A5CB8841F60E}
+		{EC2C5313-3E3C-41B2-848A-654F57CD0520} = {14DFC8C3-9A18-4D77-9C45-3E86549825E1}
+		{D71AC392-106A-45BB-B59F-8BAA40E3F34D} = {14DFC8C3-9A18-4D77-9C45-3E86549825E1}
 	EndGlobalSection
 EndGlobal
