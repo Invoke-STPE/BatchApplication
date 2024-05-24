@@ -1,4 +1,4 @@
-﻿namespace BatchApplication.Core;
+﻿﻿namespace Domain;
 
 public interface ICsvReaderService
 {

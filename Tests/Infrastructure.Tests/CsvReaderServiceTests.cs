@@ -1,14 +1,9 @@
-using System.ComponentModel;
-using System.IO.Compression;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using BatchApplication.Core;
+﻿using Domain;
 using NSubstitute;
 using NSubstitute.ClearExtensions;
-using NSubstitute.Core;
 using NSubstitute.ReturnsExtensions;
 
-namespace BatchApplication.Tests;
+namespace Infrastructure.Tests;
 
 [TestClass]
 public class CsvReaderTests
@@ -35,7 +30,7 @@ public class CsvReaderTests
         public void ReadAll_WhenCsvFilesPresents_ReturnsAllRecords()
         {
             int expected = 3;
-            FileSystem.EnumerateFiles("path/to/file").Returns(["file1.csv", "file2.csv"]);
+            FileSystem.LoadFilesFromPath("path/to/file").Returns(["file1.csv", "file2.csv"]);
             FileSystem.OpenFile("file1.csv").Returns(new StreamReader(new MemoryStream(System.Text.Encoding.UTF8.GetBytes("Column1,Column2\nValue1,Value2"))));
             FileSystem.OpenFile("file2.csv").Returns(new StreamReader(new MemoryStream(System.Text.Encoding.UTF8.GetBytes("Column1,Column2\nValue1,Value2\nValue1,Value2"))));
 

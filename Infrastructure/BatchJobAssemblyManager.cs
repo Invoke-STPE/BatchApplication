@@ -1,7 +1,7 @@
-﻿using System.Reflection;
-using BatchApplication.Core;
+﻿﻿using System.Reflection;
+using Domain;
 
-namespace BatchApplication;
+namespace Infrastructure;
 
 public class BatchJobAssemblyManager
 {

@@ -1,7 +1,7 @@
-﻿using System.Globalization;
-using BatchApplication.Core;
+﻿﻿using System.Globalization;
+using Domain;
 
-namespace BatchApplication;
+namespace Infrastructure;
 
 public class CsvReaderService : ICsvReaderService
 {
@@ -25,7 +25,7 @@ public class CsvReaderService : ICsvReaderService
     /// </remarks>
     public T[] ReadAll<T>(string folderPath)
     {
-        IEnumerable<string> files = LoadFilesFromPath(folderPath);
+        IEnumerable<string> files = _fileSystem.LoadFilesFromPath(folderPath);
 
         List<T> allRecords = [];
 
@@ -61,7 +61,7 @@ public class CsvReaderService : ICsvReaderService
     /// </remarks>
     public void ReadInChunks<T>(string folderPath, int chunkSize, Action<List<T>> processChunk)
     {
-        IEnumerable<string> files = LoadFilesFromPath(folderPath);
+        IEnumerable<string> files = _fileSystem.LoadFilesFromPath(folderPath);
 
         foreach (var file in files)
         {
@@ -105,7 +105,7 @@ public class CsvReaderService : ICsvReaderService
     /// </remarks>
     public void ReadLineByLine(string folderPath, Action<string> processLine)
     {
-      IEnumerable<string> files = LoadFilesFromPath(folderPath);
+      IEnumerable<string> files = _fileSystem.LoadFilesFromPath(folderPath);
 
       foreach (var file in files)
       {
@@ -134,7 +134,7 @@ public class CsvReaderService : ICsvReaderService
     /// </remarks>
     public IEnumerable<T> Stream<T>(string folderPath)
     {
-      IEnumerable<string> files = LoadFilesFromPath(folderPath);
+      IEnumerable<string> files = _fileSystem.LoadFilesFromPath(folderPath);
 
       foreach (var file in files)
       {
@@ -147,18 +147,5 @@ public class CsvReaderService : ICsvReaderService
             }
         }
       }
-    }
-
-    private IEnumerable<string> LoadFilesFromPath(string folderPath)
-    {
-        var files = _fileSystem.EnumerateFiles(folderPath);
-
-        if (files == null || files.Any() == false)
-        {
-            Console.WriteLine($"No CSV files found in folder: {folderPath}");
-            return Enumerable.Empty<string>();
-        }
-
-        return files;
     }
 }

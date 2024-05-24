@@ -1,9 +1,9 @@
-﻿using System.Reflection;
-using BatchApplication.Core;
+﻿using Domain;
+using Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace BatchApplication
+namespace Application
 {
     public static class JobStarter
     {
