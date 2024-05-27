@@ -26,7 +26,7 @@ namespace Application
         {
             var jobExists = _jobs.TryGetValue(jobId, out Type? jobType);
 
-            if (jobExists == false) { throw new ArgumentException($"Invalid job id: {jobId}"); }
+            if (jobExists == false) { throw new ArgumentException($"Invalid job ID: {jobId}. Please ensure that the provided job ID corresponds to an existing batch job ID."); }
             
             var service = host.Services.GetRequiredService(jobType!) as IBatchJob;
             if (service is IBatchJob job)
@@ -35,7 +35,7 @@ namespace Application
             }
             else
             {
-                throw new InvalidOperationException($"Service of type {jobType} does not implement IBatchJob");
+                throw new InvalidOperationException($"The service of type {jobType} does not implement the IBatchJob interface and therefore does not provide the required 'Execute' method.");
             }
         }
     }

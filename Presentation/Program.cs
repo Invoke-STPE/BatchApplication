@@ -15,8 +15,6 @@ if (batchJobId == null || string.IsNullOrWhiteSpace(batchJobId))
     Environment.Exit(jobFailed);
 }
 
-try
-{
     var environment = "Development";
     var path = Path.Combine(Environment.CurrentDirectory, "Configuration");
 
@@ -30,10 +28,23 @@ try
 
     var host = ServiceContainer.ConfigureBatchJobServices(configuration);
 
-    JobStarter.StartJob(batchJobId, host);
+    try
+    {
+        JobStarter.StartJob(batchJobId, host);
+    }
+    catch( ArgumentException ex) 
+    {
+        Console.WriteLine("ArgumentException occurred: " + ex.Message);
+        throw;
+    }
+    catch(InvalidOperationException ex) 
+    {
+        Console.WriteLine("InvalidOperationException occurred: " + ex.Message);
+        throw;
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine("An Unexpected error occurred:" + ex.Message);
+        throw;
+    }
     Console.ReadLine();
-}
-catch (Exception)
-{
-	throw;
-}
